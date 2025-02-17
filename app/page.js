@@ -4,8 +4,6 @@ export default function Home() {
   return (
     <div>
       <Task></Task>
-      <Task></Task>
-      <Task></Task>
     </div>
   );
 }
