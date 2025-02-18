@@ -27,6 +27,7 @@ export default function page() {
       }
 
       alert('Task added successfully!');
+      window.location.href = '/';
       e.target.form.reset();
     } catch (error) {
       alert('Failed to add task. Please try again.');

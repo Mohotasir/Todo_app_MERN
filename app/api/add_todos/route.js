@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
+import { redirect } from 'next/navigation';
 
 export const POST = async (request) => {
   try {
@@ -27,7 +28,11 @@ export const POST = async (request) => {
     const result = await todos.insertOne(newTodo);
 
     return new Response(
-      JSON.stringify({ message: "Todo added successfully", todo: newTodo }), 
+      JSON.stringify({ 
+        message: "Todo added successfully", 
+        todo: newTodo,
+        redirect: '/'
+      }), 
       {
         status: 201,
         headers: { "Content-Type": "application/json" },
