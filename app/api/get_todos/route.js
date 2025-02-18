@@ -4,7 +4,7 @@ export const GET = async () => {
   try {
     const db = await connectDB();
     const todos = db.collection("todos");
-    const allTodos = await todos.find({}).toArray();
+    const allTodos = await todos.find({}).sort({ createdAt: -1 }).toArray();
 
     return new Response(JSON.stringify(allTodos), {
       status: 200,
