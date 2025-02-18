@@ -1,6 +1,38 @@
+"use client"
 import React from 'react'
 
 export default function page() {
+  const handleAddTask = async (e) => {
+    e.preventDefault();
+    const taskTitle = e.target.form[0].value;
+    const taskDescription = e.target.form[1].value;
+
+    try {
+      const res = await fetch('/api/add_todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          task_title: taskTitle,
+          task_description: taskDescription
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.error);
+        return;
+      }
+
+      alert('Task added successfully!');
+      e.target.form.reset();
+    } catch (error) {
+      alert('Failed to add task. Please try again.');
+    }
+  };
+
   return (
     <div>
       <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -20,6 +52,7 @@ export default function page() {
               className="w-full bg-gray-800/50 text-gray-200 px-6 py-5 rounded-xl outline-none border border-gray-700 focus:border-green-500 transition-colors text-lg"
             ></textarea>
             <button 
+              onClick={handleAddTask}
               type="submit"
               className="w-full bg-gradient-to-r from-[#1ecb89] to-[#0f8f66] px-8 py-4 rounded-xl font-semibold text-white hover:opacity-90 transition-opacity shadow-lg shadow-green-400/20"
             >

@@ -3,7 +3,7 @@ import React from 'react'
 
 const getTodos = async () => {
   try {
-    const response = await fetch('http://localhost:3000/api');
+    const response = await fetch('http://localhost:3000/api/get_todos');
     if (!response.ok) {
       throw new Error('Failed to fetch todos');
     }
@@ -25,7 +25,7 @@ export default async function Task() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <input type="checkbox" className="w-5 h-5 accent-green-500" />
-                <p className="text-gray-200 text-lg">{todo.task_title}</p>
+                <p className=" text-lg md:text-xl font-semibold text-green-300 ">{todo.task_title}</p>
               </div>
               
               <div className="flex gap-3">
