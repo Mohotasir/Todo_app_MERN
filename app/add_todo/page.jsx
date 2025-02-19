@@ -8,7 +8,7 @@ export default function page() {
     const taskDescription = e.target.form[1].value;
 
     try {
-      const res = await fetch('/api/add_todos', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/add_todos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

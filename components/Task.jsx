@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 const getTodos = async () => {
   try {
-    const response = await fetch('/api/get_todos');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get_todos`);
     if (!response.ok) {
       throw new Error('Failed to fetch todos');
     }
@@ -17,7 +17,7 @@ const getTodos = async () => {
 
 const handleDelete = async (id, setTodos) => {
    try {
-     const res = await fetch(`/api/delete_todo/${id}`, {
+     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/delete_todo/${id}`, {
        method: 'DELETE',
      });
  
